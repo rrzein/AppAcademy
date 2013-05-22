@@ -21,23 +21,21 @@ class Board
   end
 
   def valid_move?(position, color, origin, destination)
+    p 0
+    basic_move_tests = [
+      valid_square?(destination),
+      piece_at?(position, origin) ? piece = square_at(position, origin) : false,
+      color == piece.color,
+      square_open?(position, destination) || enemy_at?(position, color, destination)]
 
-    #super basic move tests
-    return false unless valid_square?(destination)
-    piece_at?(position, origin) ? piece = square_at(position, origin) : false
-    return false unless color == piece.color
-    return false unless square_open?(destination) || enemy_at?(color, destination)
-
-    #more advanced tests
-    return false unless piece.can_theoretically_move_to?(destination)
-    path = piece.path_to(destination)
-    return false unless path_clear?(position, path)
-
-    hypothetical_position = move_piece(deep_dup(position), origin, destination)
-
-    return false if king_in_check?(color, hypothetical_position)
-
-    true
+    p "1.1 + #{piece}, #{piece.location}, #{position}, #{color}, #{origin}, #{destination}."
+    advanced_move_tests = [
+      piece.can_theoretically_move_to?(destination),
+      path_clear?(position, piece.path_to(destination))] #,
+      # hypothetical_position = move_piece(deep_dup(position), origin, destination),
+#       !(king_in_check?(color, hypothetical_position))]
+    p 4
+    basic_move_tests.all? && advanced_move_tests.all?
   end
 
   # valid_move? helper methods
@@ -62,12 +60,12 @@ class Board
     coordinates.all? { |coordinate| (0..7).include?(coordinate) }
   end
 
-  def square_open?(coordinates)
-    square_at(coordinates) == "_"
+  def square_open?(position, coordinates)
+    square_at(position, coordinates) == "_"
   end
 
-  def enemy_at?(color, coordinates)
-    square_at(coordinates).color != color
+  def enemy_at?(position, color, coordinates)
+    square_at(position, coordinates).color != color
   end
 
   # end of valid_move? helper methods
@@ -77,15 +75,12 @@ class Board
     ro, co = origin
     piece = position[ro][co]
     position[ro][co] = '_'
-
     rd, cd = destination
     position[rd][cd] = piece
-
     # original way
     # piece = square_at(origin)
     # square_at(origin) = '_'
     # square_at(destination) = piece
-
     piece.location = destination
     position
   end
