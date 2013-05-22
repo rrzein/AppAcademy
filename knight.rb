@@ -2,8 +2,8 @@ require './piece.rb'
 
 class Knight < Piece
 
-  def initialize(color, position)
-    super(color, position)
+  def initialize(color, location)
+    super(color, location)
     @move_increments = [ [-2, -1],
                         [-2,  1],
                         [-1, -2],
@@ -12,10 +12,6 @@ class Knight < Piece
                         [ 1,  2],
                         [ 2, -1],
                         [ 2,  1]]
-  end
-
-  def valid_moves
-    super
   end
 
   def to_s

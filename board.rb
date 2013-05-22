@@ -4,6 +4,7 @@ require './rook.rb'
 require './king.rb'
 require './queen.rb'
 require './pawn.rb'
+require 'debugger'
 
 
 class Board
@@ -21,33 +22,53 @@ class Board
   end
 
   def valid_move?(position, color, origin, destination)
-    p 0
+
     basic_move_tests = [
       valid_square?(destination),
       piece_at?(position, origin) ? piece = square_at(position, origin) : false,
       color == piece.color,
       square_open?(position, destination) || enemy_at?(position, color, destination)]
 
-    p "1.1 + #{piece}, #{piece.location}, #{position}, #{color}, #{origin}, #{destination}."
+      # path is clear if !path.empty? and all squares between [path & destination] are one of the following:
+        # moving piece itself
+        # empty square
+        # whatever is at destination square
+
     advanced_move_tests = [
-      piece.can_theoretically_move_to?(destination),
-      path_clear?(position, piece.path_to(destination))] #,
-      # hypothetical_position = move_piece(deep_dup(position), origin, destination),
-#       !(king_in_check?(color, hypothetical_position))]
-    p 4
+      # piece.can_theoretically_move_to?(destination),
+      valid_path?(position, piece, piece.path_to(destination)),
+      hypothetical_position = (move_piece(deep_dup(position), origin, destination)),
+      !(king_in_check?(color, hypothetical_position))]
     basic_move_tests.all? && advanced_move_tests.all?
   end
 
+  # def valid_move_doesnt_put_king_in_check?(position, color, origin, destination)
+  #   if valid_move?(position, color, origin, destination)
+  #     p "valid move"
+  #     hypothetical_position = move_piece(deep_dup(position), origin, destination)
+  #     p hypothetical_position
+  #     p color
+  #     p "King in check = #{(king_in_check?(color, hypothetical_position))}"
+  #     !(king_in_check?(color, hypothetical_position))
+  #   end
+  # end
+
   # valid_move? helper methods
 
-  def path_clear?(position, path)
-    path[1...-1].none? do |coordinates| # double check after doing path_to
-      piece_at?(position, coordinates)
+  def valid_path?(position, piece, path)
+    p "Checking if path #{path} clear for #{piece.color} #{piece}..."
+    unless path.empty?
+      path[1...-1].none? do |square|
+        piece_at?(position, square)
+      end
     end
   end
 
-  def piece_at?(position, coordinates)
+  def piece_at?(position, coordinates) # take piece arg out if possible
     r, c = coordinates
+    puts
+    puts "Checking if there is a piece at square [#{r}, #{c}]..."
+    puts "=> [#{r}, #{c}] contains #{position[r][c]}"
     position[r][c] != EMPTY_SQUARE
   end
 
@@ -82,6 +103,7 @@ class Board
     # square_at(origin) = '_'
     # square_at(destination) = piece
     piece.location = destination
+    piece.first_move if piece.is_a?(Pawn)
     position
   end
 
@@ -93,18 +115,21 @@ class Board
     color == :white ? enemy_color = :black : enemy_color = :white
     pieces = position.flatten.reject { |coordinate| coordinate == EMPTY_SQUARE }
     enemy_pieces = pieces.select { |piece| piece.color != color }
-    p "Enemy pieces: #{enemy_pieces}"
-    enemy_pieces.none? do |piece|
-      valid_move?(position, enemy_color, piece.location, king_location(color, position))
+    king_loc = king_location(color, position)
+    # p "Enemy pieces: #{enemy_pieces}"
+    enemy_pieces.any? do |piece|
+      # valid_move?(position, enemy_color, piece.location, king_loc)
+      valid_path?(position, piece, piece.path_to(king_loc))
     end
   end
 
   def king_location(color, position)
-    p position
+    # p position
     pieces = position.flatten.reject { |coordinate| coordinate == EMPTY_SQUARE }
-    p "All pieces: #{pieces}"
+    # p "All pieces: #{pieces}"
     king = pieces.select { |piece| piece.color == color && piece.is_a?(King) }
-    p king
+    # p king
+    # p "King location = #{king[0].location}"
     king[0].location
   end
 
