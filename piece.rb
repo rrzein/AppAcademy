@@ -38,16 +38,4 @@ class Piece
     possible_moves.reject! { |move| move.any? { |c| c < 0 } }
   end
 
-  def on_board?(square)
-
-  end
-
-  def open?(square)
-
-  end
-
-  def enemy_piece?(square)
-
-  end
-
 end

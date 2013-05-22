@@ -52,8 +52,4 @@ class SlidingPiece < Piece
     end
   end
 
-
-  def path
-  end
-
 end

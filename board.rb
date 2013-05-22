@@ -13,26 +13,25 @@ class Board
 
   def initialize
     @position = Array.new(8) { Array.new(8) { EMPTY_SQUARE } }
+    #each empty square is the same object.. does it matter?
     @colors = [:white, :black]
-    @move = @colors[0]
+    # @move = @colors[0]
+    #not current using @move... at least until we work on Game class
     set_up_starting_position
   end
 
   def valid_move?(position, color, origin, destination)
 
-    return false unless on_board?(destination)
-
-    piece_at?(origin) ? piece = square_at(origin) : false
-
+    #super basic move tests
+    return false unless valid_square?(destination)
+    piece_at?(position, origin) ? piece = square_at(position, origin) : false
     return false unless color == piece.color
-
     return false unless square_open?(destination) || enemy_at?(color, destination)
 
-    piece.can_theoretically_move_to?(destination)
-
+    #more advanced tests
+    return false unless piece.can_theoretically_move_to?(destination)
     path = piece.path_to(destination)
-
-    return false unless path_clear?(path)
+    return false unless path_clear?(position, path)
 
     hypothetical_position = move_piece(deep_dup(position), origin, destination)
 
@@ -43,23 +42,23 @@ class Board
 
   # valid_move? helper methods
 
-  def path_clear?(path)
+  def path_clear?(position, path)
     path[1...-1].none? do |coordinates| # double check after doing path_to
-      piece_at?(coordinates)
+      piece_at?(position, coordinates)
     end
   end
 
-  def piece_at?(coordinates)
+  def piece_at?(position, coordinates)
     r, c = coordinates
-    @position[r][c] != EMPTY_SQUARE
+    position[r][c] != EMPTY_SQUARE
   end
 
-  def square_at(coordinates)
+  def square_at(position, coordinates)
     r, c = coordinates
-    @position[r][c]
+    position[r][c]
   end
 
-  def on_board?(coordinates)
+  def valid_square?(coordinates)
     coordinates.all? { |coordinate| (0..7).include?(coordinate) }
   end
 
