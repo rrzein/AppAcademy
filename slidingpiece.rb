@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './piece.rb'
 
 class SlidingPiece < Piece

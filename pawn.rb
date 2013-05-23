@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './piece.rb'
 
 class Pawn < Piece
@@ -75,7 +77,7 @@ class Pawn < Piece
   end
 
   def to_s
-    'P'
+    '♟'.colorize(@color).colorize(:background => get_background_color)
   end
 
   # Unsure if use

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './slidingpiece.rb'
 
 class Bishop < SlidingPiece
@@ -10,7 +12,7 @@ class Bishop < SlidingPiece
   end
 
   def to_s
-    'B'
+    '♝'.colorize(@color).colorize(:background => get_background_color)
   end
 
 end

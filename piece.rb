@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Piece
   attr_reader :color, :attack_increments
   attr_accessor :location
@@ -6,7 +8,6 @@ class Piece
   def initialize(color, location)
     @color = color
     @location = location
-    # @attack_increments =
   end
 
   # We actually use
@@ -29,6 +30,14 @@ class Piece
 
   def build_path(destination)
     [location, destination]
+  end
+
+  def get_background_color
+    if (@location[0] + @location[1]).even?
+      return :blue
+    else
+      return :green
+    end
   end
 
   # # Unsure if use

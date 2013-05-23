@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './piece.rb'
 
 class King < Piece
@@ -16,7 +18,7 @@ class King < Piece
   end
 
   def to_s
-    'K'
+    '♚'.colorize(@color).colorize(:background => get_background_color)
   end
 
 end

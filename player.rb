@@ -1,27 +1,27 @@
+# encoding: utf-8
+
 class Player
 
+  def initialize(color)
+    @color = color.to_s.capitalize
+  end
+
   def get_move
-    puts "Please enter a move in in the form of coordinates. For example: e2-e4."
+    puts "#{@color}, please enter a move in coordinates. For example: e2-e4."
     input = gets.chomp
     parse(input)
   end
 
   def parse(input)
-    puts "input"
     origin, destination = input.split("-")
-    puts "Origin: #{origin}, Destination: #{destination}"
     origin_file, origin_rank = origin.split(//)
-    puts "Origin_file : #{origin_file}, Origin_rank : #{origin_rank}"
     destination_file, destination_rank = destination.split(//)
-    puts "Destination_file : #{destination_file}, Destination_rank : #{destination_rank}. "
 
     origin_row = rank_to_row(origin_rank)
     destination_row = rank_to_row(destination_rank)
-    puts "Origin row: #{origin_row}, Destination_row: #{destination_row}."
 
     origin_column = file_to_column(origin_file)
     destination_column = file_to_column(destination_file)
-    puts "Origin_column = #{origin_column}, Dest_col : #{destination_column}"
 
     [[origin_row, origin_column], [destination_row, destination_column]]
   end

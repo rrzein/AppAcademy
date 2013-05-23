@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './slidingpiece.rb'
 
 
@@ -18,7 +20,7 @@ class Queen < SlidingPiece
   end
 
   def to_s
-    'Q'
+    '♛'.colorize(@color).colorize(:background => get_background_color)
   end
 
 end

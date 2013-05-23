@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './slidingpiece.rb'
 
 class Rook < SlidingPiece
@@ -10,6 +12,6 @@ class Rook < SlidingPiece
   end
 
   def to_s
-    'R'
+    '♜'.colorize(@color).colorize(:background => get_background_color)
   end
 end

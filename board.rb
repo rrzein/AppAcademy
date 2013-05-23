@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require './knight.rb'
 require './bishop.rb'
 require './rook.rb'
@@ -44,7 +46,6 @@ class Board
   # valid_move? helper methods
 
   def valid_path?(position, piece, path)
-    # p "Checking if path #{path} clear for #{piece.color} #{piece}..."
     return false if path.empty?
 
     path_tests = [
@@ -68,14 +69,11 @@ class Board
 
   def piece_at?(position, coordinates) # take piece arg out if possible
     r, c = coordinates
-    # puts "Checking if there is a piece at square [#{r}, #{c}]..."
-    # puts "=> [#{r}, #{c}] contains #{position[r][c]}"
     position[r][c] != EMPTY_SQUARE
   end
 
   def square_at(position, coordinates)
     r, c = coordinates
-    # puts "r, c, = #{r}, #{c}"
     position[r][c]
   end
 
@@ -119,9 +117,7 @@ class Board
     pieces = position.flatten.reject { |coordinate| coordinate == EMPTY_SQUARE }
     enemy_pieces = pieces.select { |piece| piece.color != color }
     king_loc = king_location(color, position)
-    # p "Enemy pieces: #{enemy_pieces}"
     enemy_pieces.any? do |piece|
-      # valid_move?(position, enemy_color, piece.location, king_loc)
       valid_path?(position, piece, piece.path_to(king_loc))
     end
   end
@@ -131,8 +127,6 @@ class Board
     own_pieces = pieces.select { |piece| piece.color == color }
     own_pieces.all? do |piece|
       piece.possible_moves.none? do |move|
-        # puts "Move = #{move}"
-        puts "Can I move #{piece} to #{move}?"
         valid_move?(deep_dup(position), color, piece.location, move)
       end
     end
@@ -183,15 +177,24 @@ class Board
     array_copy
   end
 
-  # add_piece(piece, position)
-
-  # position # getter
+  def get_square_color(index, column)
+    if (index + column).even?
+      return :blue
+    else
+      return :green
+    end
+  end
 
   def to_s
     puts  "  #{('a'..'h').to_a.join(' ')}"
     puts "  " + "_" * 15
     @position.each_with_index do |row, index|
-      puts ([(8 - index)] + row).join(' ')
+      row.each_with_index do |square, column|
+        if square == "_"
+          @position[index][column] = square.colorize(:background => get_square_color(index, column))
+        end
+      end
+      puts ([(8 - index)] + row).join('')
     end
   end
 

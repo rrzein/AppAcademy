@@ -1,5 +1,8 @@
+# encoding: utf-8
+
 require './board.rb'
 require './humanplayer.rb'
+require 'colorize'
 
 class Game
 
@@ -16,10 +19,7 @@ class Game
     until @board.checkmate?(whose_turn, @board.position)
       move_made = false
       until move_made
-        p @players
         origin, destination = @players[whose_turn].get_move
-        p "Origin: #{origin}"
-        p "Destination: #{destination}"
         if @board.valid_move?(@board.position, whose_turn, origin, destination)
           @board.move_piece(@board.position, origin, destination)
           next_players_turn
@@ -28,6 +28,8 @@ class Game
       end
       show_game_board
     end
+    puts "Checkmate!"
+    puts "#{@colors.last.to_s.capitalize} wins!"
   end
 
   def get_players
@@ -39,15 +41,15 @@ class Game
       input = gets.chomp.to_i
       case input
       when 1
-        @players[:white] = HumanPlayer.new
-        @players[:black] = HumanPlayer.new
+        @players[:white] = HumanPlayer.new(:white)
+        @players[:black] = HumanPlayer.new(:black)
       when 2
         random = rand(0..1)
-        @players[@colors[random]] = HumanPlayer.new
-        @players[@colors[random - 1]] = ComputerPlayer.new
+        @players[@colors[random]] = HumanPlayer.new(@colors[random])
+        @players[@colors[random - 1]] = ComputerPlayer.new(@colors[random - 1])
       when 3
-        @players[:white] = ComputerPlayer.new
-        @players[:black] = ComputerPlayer.new
+        @players[:white] = ComputerPlayer.new(:white)
+        @players[:black] = ComputerPlayer.new(:black)
       else
         puts "Invalid mode."
       end
@@ -60,6 +62,28 @@ class Game
   end
 
   def show_game_board
+    # output = ['blue'.colorize(:blue), 'yellow'.colorize(:yellow)]
+#
+#     @board.position.each_with_index do |row, r|
+#       row.each_with_index do |square, c|
+#         if (r + c) % 2
+#           # shovel white square
+#         else
+#           # shovel black square
+#         end
+#         if square.is_a?(Piece)
+#           # get color
+#           # return colorized string
+#         elsif square == "_"
+#           # shovel space
+#         end
+#       end
+#
+#     end
+#
+#     puts output
+#     puts output[0]
+#     puts output[1]
     puts @board
   end
 
@@ -71,3 +95,6 @@ class Game
     @colors.reverse!
   end
 end
+
+g = Game.new
+g.play
