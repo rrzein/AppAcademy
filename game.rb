@@ -62,28 +62,6 @@ class Game
   end
 
   def show_game_board
-    # output = ['blue'.colorize(:blue), 'yellow'.colorize(:yellow)]
-#
-#     @board.position.each_with_index do |row, r|
-#       row.each_with_index do |square, c|
-#         if (r + c) % 2
-#           # shovel white square
-#         else
-#           # shovel black square
-#         end
-#         if square.is_a?(Piece)
-#           # get color
-#           # return colorized string
-#         elsif square == "_"
-#           # shovel space
-#         end
-#       end
-#
-#     end
-#
-#     puts output
-#     puts output[0]
-#     puts output[1]
     puts @board
   end
 

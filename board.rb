@@ -12,7 +12,7 @@ require 'debugger'
 class Board
   attr_reader :position
 
-  EMPTY_SQUARE = '_'
+  EMPTY_SQUARE = '  '
 
   def initialize
     @position = Array.new(8) { Array.new(8) { EMPTY_SQUARE } }
@@ -82,7 +82,7 @@ class Board
   end
 
   def square_open?(position, coordinates)
-    square_at(position, coordinates) == "_"
+    square_at(position, coordinates) == EMPTY_SQUARE
   end
 
   def enemy_at?(position, color, coordinates)
@@ -96,7 +96,7 @@ class Board
     # verbose way
     ro, co = origin
     piece = position[ro][co]
-    position[ro][co] = '_'
+    position[ro][co] = EMPTY_SQUARE
     rd, cd = destination
     position[rd][cd] = piece
     # original way
@@ -179,18 +179,17 @@ class Board
 
   def get_square_color(index, column)
     if (index + column).even?
-      return :blue
+      return :light_magenta
     else
-      return :green
+      return :cyan
     end
   end
 
   def to_s
     puts  "  #{('a'..'h').to_a.join(' ')}"
-    puts "  " + "_" * 15
     @position.each_with_index do |row, index|
       row.each_with_index do |square, column|
-        if square == "_"
+        if square == EMPTY_SQUARE
           @position[index][column] = square.colorize(:background => get_square_color(index, column))
         end
       end

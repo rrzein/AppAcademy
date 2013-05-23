@@ -34,9 +34,9 @@ class Piece
 
   def get_background_color
     if (@location[0] + @location[1]).even?
-      return :blue
+      return :light_magenta
     else
-      return :green
+      return :cyan
     end
   end
 

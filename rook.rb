@@ -12,6 +12,6 @@ class Rook < SlidingPiece
   end
 
   def to_s
-    '♜'.colorize(@color).colorize(:background => get_background_color)
+    '♜ '.colorize(@color).colorize(:background => get_background_color)
   end
 end
