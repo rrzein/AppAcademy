@@ -15,7 +15,7 @@ class Piece
     possible_moves = @move_increments.map do |increment|
       [@location[0] + increment[0], @location[1] + increment[1]]
     end
-    possible_moves.reject! { |move| move.any? { |c| c < 0 } }
+    possible_moves.reject! { |move| move.any? { |c| c < 0 || c > 7} }
     possible_moves
   end
 

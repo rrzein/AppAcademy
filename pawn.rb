@@ -39,7 +39,9 @@ class Pawn < Piece
   def possible_moves
     # p possible_non_attack_moves
     # p possible_attack_moves
-    possible_non_attack_moves + possible_attack_moves
+    moves = possible_non_attack_moves + possible_attack_moves
+    moves.reject! { |move| move.any? { |c| c < 0 || c > 7} }
+    moves
   end
 
   def possible_non_attack_moves

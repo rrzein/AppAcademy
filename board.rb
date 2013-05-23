@@ -27,53 +27,55 @@ class Board
       valid_square?(destination),
       piece_at?(position, origin) ? piece = square_at(position, origin) : false,
       color == piece.color,
-      square_open?(position, destination) || enemy_at?(position, color, destination)]
+      square_open?(position, destination) || enemy_at?(position, color, destination)
+    ]
 
-      # path is clear if !path.empty? and all squares between [path & destination] are one of the following:
-        # moving piece itself
-        # empty square
-        # whatever is at destination square
-
-    advanced_move_tests = [
-      # piece.can_theoretically_move_to?(destination),
-      valid_path?(position, piece, piece.path_to(destination)),
-      hypothetical_position = (move_piece(deep_dup(position), origin, destination)),
-      !(king_in_check?(color, hypothetical_position))]
+    if basic_move_tests.all?
+      advanced_move_tests = [
+        valid_path?(position, piece, piece.path_to(destination)),
+        hypothetical_position = (move_piece(deep_dup(position), origin, destination)),
+        !(king_in_check?(color, hypothetical_position))
+      ]
+    end
     basic_move_tests.all? && advanced_move_tests.all?
-  end
 
-  # def valid_move_doesnt_put_king_in_check?(position, color, origin, destination)
-  #   if valid_move?(position, color, origin, destination)
-  #     p "valid move"
-  #     hypothetical_position = move_piece(deep_dup(position), origin, destination)
-  #     p hypothetical_position
-  #     p color
-  #     p "King in check = #{(king_in_check?(color, hypothetical_position))}"
-  #     !(king_in_check?(color, hypothetical_position))
-  #   end
-  # end
+  end
 
   # valid_move? helper methods
 
   def valid_path?(position, piece, path)
-    p "Checking if path #{path} clear for #{piece.color} #{piece}..."
-    unless path.empty?
-      path[1...-1].none? do |square|
-        piece_at?(position, square)
-      end
+    # p "Checking if path #{path} clear for #{piece.color} #{piece}..."
+    return false if path.empty?
+
+    path_tests = [
+      path.size > 0,
+      path[1...-1].none? { |square| piece_at?(position, square) }
+    ]
+    if piece.is_a?(Pawn)
+      path_tests << pawn_valid_path?(position, piece, path)
+    end
+    path_tests.all?
+  end
+
+  def pawn_valid_path?(position, piece, path)
+    if path.last[1] == path.first[1]
+      true unless piece_at?(position, path.last)
+    else # attack
+      piece_at?(position, path.last) &&
+      square_at(position, path.last).color != piece.color
     end
   end
 
   def piece_at?(position, coordinates) # take piece arg out if possible
     r, c = coordinates
-    puts
-    puts "Checking if there is a piece at square [#{r}, #{c}]..."
-    puts "=> [#{r}, #{c}] contains #{position[r][c]}"
+    # puts "Checking if there is a piece at square [#{r}, #{c}]..."
+    # puts "=> [#{r}, #{c}] contains #{position[r][c]}"
     position[r][c] != EMPTY_SQUARE
   end
 
   def square_at(position, coordinates)
     r, c = coordinates
+    # puts "r, c, = #{r}, #{c}"
     position[r][c]
   end
 
@@ -86,6 +88,7 @@ class Board
   end
 
   def enemy_at?(position, color, coordinates)
+    return false unless square_at(position, coordinates).is_a?(Piece)
     square_at(position, coordinates).color != color
   end
 
@@ -123,17 +126,22 @@ class Board
     end
   end
 
-  def king_location(color, position)
-    # p position
+  def checkmate?(color, position)
     pieces = position.flatten.reject { |coordinate| coordinate == EMPTY_SQUARE }
-    # p "All pieces: #{pieces}"
-    king = pieces.select { |piece| piece.color == color && piece.is_a?(King) }
-    # p king
-    # p "King location = #{king[0].location}"
-    king[0].location
+    own_pieces = pieces.select { |piece| piece.color == color }
+    own_pieces.all? do |piece|
+      piece.possible_moves.none? do |move|
+        # puts "Move = #{move}"
+        puts "Can I move #{piece} to #{move}?"
+        valid_move?(deep_dup(position), color, piece.location, move)
+      end
+    end
   end
 
-  def checkmate?
+  def king_location(color, position)
+    pieces = position.flatten.reject { |coordinate| coordinate == EMPTY_SQUARE }
+    king = pieces.select { |piece| piece.color == color && piece.is_a?(King) }
+    king[0].location
   end
 
   private
@@ -180,10 +188,10 @@ class Board
   # position # getter
 
   def to_s
-    puts  "  #{(0..7).to_a.join(' ')}"
+    puts  "  #{('a'..'h').to_a.join(' ')}"
     puts "  " + "_" * 15
     @position.each_with_index do |row, index|
-      puts ([index] + row).join(' ')
+      puts ([(8 - index)] + row).join(' ')
     end
   end
 

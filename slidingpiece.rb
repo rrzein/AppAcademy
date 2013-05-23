@@ -33,17 +33,6 @@ class SlidingPiece < Piece
       end
   end
 
-  # Unsure if use
-
-  # def valid_moves
-  #   super
-  #   @position + move_increment.path_clear?
-  # end
-
-  def path_clear?(destination)
-    path(destination)[0..-1].none? { |square| @board.is_occupied?(square) }
-  end
-
   def up_or_down_to(loc, des)
     case loc <=> des
     when 1
@@ -54,5 +43,16 @@ class SlidingPiece < Piece
       [loc]
     end
   end
+
+  # Unsure if use
+
+  # def valid_moves
+  #   super
+  #   @position + move_increment.path_clear?
+  # end
+
+  # def path_clear?(destination)
+ #    path(destination)[0..-1].none? { |square| @board.is_occupied?(square) }
+ #  end
 
 end
