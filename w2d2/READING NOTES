@@ -1,0 +1,86 @@
+Ruby W2D2
+
+Inheritance
+-Know how to extend a class
+  -Use ChildClass < ParentClass to extend a class
+-Know how to overrise a method
+  -When you define the same methods in the child class, it overrides the parent class's methods'
+-Know how to call the original method
+  -To call the original method, use super
+  -For example:
+  class Animal
+    def initialize(species)
+      @species = species
+    end
+  end
+
+  class Human < Animal
+    def initialize(name)
+      super("Human")
+    end
+  end
+
+  -In the example above, we use "super" to set the species of the Human class object to "Human"
+
+
+
+Exceptions
+-Know when to use exceptions
+  -Tell the caller that your code can't do what was asked
+  -If the calling method doesn't rescue an exception, it BUBBLES UP the CALL STACK
+-Know how to raise an exception. Know how to handle one.
+  -Create an begin/rescue/end block... the "rescue" part will capture the error and saveto
+    to a variable
+-Know how to run some code regardless of an exception being thrown.
+  -Put an "ensure" in the begin/rescue/end block to ensure that the code is run.
+-If you want user to distinguish different fail types, you can extend StandardError and write your own
+-Don't go crazy trying to write exceptions all the time. "Once you have a hammer, you may find yourself starting to look for nails."'
+-Remember the maxim: "You ain't gonna need it."
+  -Wait to implement functionality when you need it... Not when you anticipate it.
+
+
+Decomposition Into Objects
+-Way to decompose complex problems
+-When decomposing problem into objects, look for nouns (verbs end up as methods)
+-Object-oriented design - > break a problem into classes, each of which is responsible for its own state and behavior.
+-Makes code more modular (and extensible), and makes each piece easier to reason about.
+
+-Deciding single responsibility:
+  -Define classes at the level of abstraction that you want to make changes at.
+  -A large class is >125 lines of code--watch out after that.
+  -300+ lines for a class is way too fucking big.
+  -Do One Thing--- and decide what that one thing WON'T DO.'
+
+Inheritance and DRY
+  -When defining classes, avoid duplicating code in their methods-- DRY. Inheritance will help us do that.
+  -Don't introduce subclasses before you need them.'
+  -DO NOT introduce a new subclass until:
+    -1. You are facing two different subclasses of the base class
+    -2. The two subclasses have substantially different behavior.
+    -Don't use inheritance until it serves a purpose like keeping your code DRY or helping code organization.'
+    -Why we DRY:
+      -Minimize errors.
+      -Speed up debugging process
+      -Make code easier to change or add to in the future.
+
+Information Hiding
+Private Methods
+  -Only way to access methods is from the class itself.
+  -Example:
+  class Door
+    def open
+    end
+
+    private
+    def lock_door
+    end
+  end
+
+  "Lock door" can only happen if called by the door instance itself within itself.
+
+Shy Code
+  -Private methods should be created for SAFETY (dont fuck with my class or instance) and SIMPLE INTERFACE (dont overwhelm with a bunch of options... could hurt the program later)
+  -Don't want to leak internal concerns to the outside world. (expose to the world all the object's shit)
+  -Minimize the interfaces between your clases. (You want classes to be up in each others' business as little as possible.)
+  -Expose the least possible about of state and behavior.
+  -Have a good reason for every piece of information that you expose.

@@ -1,0 +1,25 @@
+Minesweeper notes
+
+-Broken down into Tile, Board, and Minesweeper classes
+-Alias_method to rename to a question_mark/boolean-resulting accessor
+-Recursive explore method
+-Dont even need to initialize an instance variable neighbors
+	-The base case is if the square is flagged or explored
+	-Ultimately returns self
+
+	def explore
+	return self if flagged?
+	return self if explored?
+
+	@explored = true
+	if (not bombed?) && adjacent_bomb_count == 0
+		neighbors.each { |adj_tile| adj_tile.explore }
+		end
+
+		end
+
+		self
+	end
+
+-What does inspect do in the solution?
+-In addition to "rendering" when you explore, there's a "reveal" when you lose
