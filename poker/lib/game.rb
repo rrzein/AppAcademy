@@ -1,4 +1,6 @@
-#
+require 'deck'
+require 'hand'
+require 'player'
 
 class Game
   #game is the dealer
@@ -24,111 +26,7 @@ class Game
 
   #congratulate players. say how much winning player takes home.
 
-end
 
-class Player
-  #methods
-  #initializes pot
-
-  #deals cards to player
-    #each player holds an instance of the Hand class at any given time
-
-  #ask player which cards to discard
-    #sends cards back to the bottom of deck
-    #deals as many cards back to the player's hand
-
-  #ask player if they want to fold, see, or raise
-
-  attr_reader :hand
-
-  def initialize(pot)
-    @pot = pot
-    @hand = []
-  end
-
-  def betting_move
-  end
-
-  def make_bet
-  end
-
-  def fold
-  end
-
-  def see
-  end
-
-  def raise
-  end
-
-  def discard
-  end
 
 end
 
-class Hand
-#takes 5 cards from the deck
-#calculates the value of the hand based on the cards in it(instance variable)
-  #value can be a number?
-  attr_accessor :cards
-
-  def initialize
-    @cards = []
-  end
-
-  def draw
-
-  end
-
-  def return
-  end
-
-end
-
-class Deck
-  attr_reader :cards
-
-  SUITS = [:D, :H, :C, :S]
-  VALUES = [:A, 2, 3, 4, 5, 6, 7, 8, 9, 10, :J, :Q, :K]
-
-  def initialize
-    @cards = []
-    populate_cards
-
-  #initializes to 52 card objects representing a deck
-  #"deals" a card out of itself to a "hand"
-  #
-  #this could be a subclass of arrays?
-
-  #shuffles itself
-  end
-
-  def populate_cards
-    SUITS.each do |suit|
-      VALUES.each do |value|
-        card = [suit, value]
-        @cards << card unless @cards.include?(card)
-      end
-    end
-    @cards
-  end
-
-  def shuffle!
-    @cards.shuffle!
-  end
-
-end
-
-class Card
-  attr_reader :face
-
-  def initialize(suit, value)
-
-    @suit = suit
-    @value = value
-    @face = [suit, value]
-  end
-
-  #should have a suit and value
-  #
-end
