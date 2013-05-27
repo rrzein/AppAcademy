@@ -1,0 +1,79 @@
+RSpec Book
+Chapter 12
+
+-describe
+	-Code example - Executable example of how subject code can be used and its
+	expected behavior
+	-example group: Group of code examples
+	-The first argument passed after "describe" indicates what class the examples are for
+
+-The context method
+	-Context is an alias of describe()
+	-Usually used to set up the context "preconditions" of a group of tests
+
+-it
+	-Pass a string to it to name examples... Very descriptive
+	-Shouldn't use "should" in example titles
+	-Pending examples are it() methods without blocks... They are tests you expect to write code for to pass
+	-Or they need to fix bugs
+	-Pending takes a string
+	-You can also take a block of code and pass that to the pending method
+		-i.e. Wrap failing examples in pending code
+
+-before(:each) and before(:all)
+	-before(:each) rec-reates the context before each example and keeps state from leaking from example to example
+	-before(:all) gets run once in its own instance of Object
+	-instance variables get copied to each instance in which the examples are run
+	-you generally want to use before(:each) more
+
+-can use helper methods in examples
+
+-Share example groups
+	-Use shared_exampels_for "general subject" passing it a block with each tests
+	-Call these general tests in an applicable shared_examples #describe block using it_behaves_like_ "general subject"
+	-it_behaves_like() method generates a nested example group
+
+-Chapter 13
+	-should and should_not
+		-Every object has should and should_not matchers
+		-should and should_not accepts a matcher that it tries to match against
+		-A matcher is the argument you pass to should and should_not
+	-Most common equality matcher is should==
+		-Never use something.should != another... it is interpreted at should==
+	-be_close matcher accepts an accepted value and an acceptable delta
+	as its parameters
+	-use #match and =~ operator to match a regular expression
+	-expect(...) to change(...)
+	-raise_error() matcher will raise an an error
+
+	-be_x __ RSpec strips off the "be_", and appends "? to what's left
+
+	-Testing for truthiness-
+		-Use ==
+		-Use #equals to check whether value equals true or false
+
+	-Check for value of has_key? using have_key
+
+	-Generated descriptions are RSPec's automatic example-name generator
+		-Uses specify() instead of it() befcause specify() is more readable when there is no docstring
+
+	-The subject of an example is the object being described
+	-Use subject() method to define an explicit subject by passing it a block
+
+-Test Doubles
+	-A mock
+	-Fake object used to create isolation between objects
+	-Double is a blank slate waiting for behaviors to be added
+	-Mocks isolate the functionality of a single class from other outside classes
+	-IN EACH SPEC, TEST ONE THING ONLY.
+
+-Subject
+	-subject method is passed a name for the subject, and a block which constructs the subject
+	-subject is used outside of an it spec
+	-Neither subject nor let can be defined inside of a spec
+
+-Let
+	-Helps us create other objects to interact with the subject
+	-let works like subject, but whereas subject is the focus of the test, let defines helper objects
+	-Can define many helper objects through let
+	-let does not persist state between specs

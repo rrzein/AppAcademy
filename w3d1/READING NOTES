@@ -1,0 +1,44 @@
+SQL Intro
+
+Breaking down domain into database is important because it forces you to ask what your application essentially needs to function.
+
+Three things needed:
+-The tables you will have
+-The columns each of those tables will have
+-The data type of each of those columns
+
+Static Typing
+-In SQL you need to specify the type of data that will go into each column
+
+Data type note: BLOB stores binary data
+
+Modeling Relationships
+Foreign key - A value in a database table that points to a row in a different table
+	-Foreign key in one table will reference the primary key in another table
+	-Column that houses foreign key is *other_table_name_singularized_*id
+-Foreign keys ensure that data is not duplicated across databases
+-Datase normalization - Databases should limit the amount of duplicated data across tables
+
+Structured Query Language (SQL)
+SQL - domain-specific programming language that queries data out of relational databases
+
+Queries broken down into CLAUSES.
+
+SELECT - list of comma-separated column names
+FROM - table name
+WHERE - list of conditions separated by AND or OR
+
+4 Main Data Manipulation Operations:
+-SELECT - retrieve values from one or more rows
+-INSERT - insert a row
+-UPDATE - update values in one or more existing rows
+-DELETE - delete one or more rows
+
+INSERT -> inserting a row
+
+CREATE TABLE - specify name of table, then in parentheses, the column names along with their data types
+
+DATABASE CONSTRAINTS - must be specified. 
+
+JOIN - joins together two tables.
+ON - specify how those tables relate to one another.

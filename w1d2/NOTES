@@ -1,0 +1,46 @@
+Today's Learnings:
+**What are those things that begin with &: ????
+
+-Good method design
+Making sure not to cram too much in one method
+Making it really clear what the purpose of a method is--whether it returns something or has a side effect
+Making sure methods are not too verbose
+
+-Iteration
+Bubble sort-- Don't use i and j iterators with while loops-- they're for amateurs
+Dictionary substrings --> create an array with the dictionary words, then turn it into a set, then use "Select", as opposed to iterating through the whole dictionary file
+Maybe instead of always trying to build up a new array, take an EXISTING big array and use SELECT to filter it down
+
+-File IO
+When you open something for writing, you have a block with a variable, like |f|, and then you call methods on |f| to write to the file... Could you explain what "f" is a little more? Does it simply mean "Do this method on this line in the file?"
+
+-Objects and Classes
+Students and Courses -- Pay close attention to how they structure the course schedule, and how they see if the courses overlap
+	- Create a hash called "schedule" with two keys :days and :time, each key contains an array of the days and an array of the times, respectively
+	- You can find out the overlap of days by adding the days together for both the courses, then seeing if any of the days are duplicated
+	- For the blocks, you have to see whether the block is the same for both courses, then you know there's a course conflict
+	- Ideally, you want a separate method to determine if the days overlap, and if the course block overlaps --> if both conditions are satisfied, then you have a problem
+
+-Tic Tac Toe Game
+To create a 3 by 3 array populated with NILS => (0...3).ma { [nil] * 3 }
+Create a method that checks if the space is empty
+SPLATting... Look it up later
+You might want to re-visit... or re-kindle your relationship with .map
+Notice that a BOARD class was initialized along with a TicTacToe class
+
+
+Questions:
+Methods
+Remix
+What is "&:something?"
+
+Iteration
+Bubble sort -- Why did they create a "!" method, and use self.dup.bubble_sort?
+Times.do -- So the |variable| passed in the block is the number time you're executing a method? It's like an index variable.
+ANSWER: YES. If you pass in a variable i to the block, times will pass in values from ZERO to however many times the method is called up to i
+
+Tic Tac Toe
+What's the use for "dup"? What happens if we don't use it?
+	-Perhaps it's so that you can't change it outside of the class
+Defined methods for each row, column, and diagonal
+(Rows + cols + diagonals).each do <---- so we're iterating over all of the arrays returned by these methods?
