@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url: MyString
+  longurl_id: 
+  visits: 
+  submitter_id: 
+
+two:
+  url: MyString
+  longurl_id: 
+  visits: 
+  submitter_id: 
