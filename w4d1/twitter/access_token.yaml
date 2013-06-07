@@ -1,0 +1,85 @@
+--- !ruby/object:OAuth::AccessToken
+token: 159032449-j9MA4aYI62C8GzAxc1ATnD7KhukDcp1RWhQuwdVc
+secret: Hd5ZgHzn5UPUUZP3WOixDV2TfshgotGUBTGZC3UCM
+consumer: !ruby/object:OAuth::Consumer
+  key: BmY4X2tKeJHN9A8L3JIwg
+  secret: inZdql3WMVrfEzLhsJcHAyZ47VvUTSMRiKQwDJaIQ
+  options:
+    :signature_method: HMAC-SHA1
+    :request_token_path: /oauth/request_token
+    :authorize_path: /oauth/authorize
+    :access_token_path: /oauth/access_token
+    :proxy: 
+    :scheme: :header
+    :http_method: :post
+    :oauth_version: '1.0'
+    :site: https://twitter.com
+  http_method: :post
+  http: !ruby/object:Net::HTTP
+    address: twitter.com
+    port: 443
+    local_host: 
+    local_port: 
+    curr_http_version: '1.1'
+    keep_alive_timeout: 2
+    last_communicated: 
+    close_on_empty_response: false
+    socket: 
+    started: false
+    open_timeout: 30
+    read_timeout: 30
+    continue_timeout: 
+    debug_output: 
+    proxy_from_env: true
+    proxy_uri: 
+    proxy_address: 
+    proxy_port: 
+    proxy_user: 
+    proxy_pass: 
+    use_ssl: true
+    ssl_context: !ruby/object:OpenSSL::SSL::SSLContext
+      cert: 
+      key: 
+      client_ca: 
+      ca_file: 
+      ca_path: 
+      timeout: 
+      verify_mode: 0
+      verify_depth: 
+      renegotiation_cb: 
+      verify_callback: 
+      options: -2147482625
+      cert_store: 
+      extra_chain_cert: 
+      client_cert_cb: 
+      tmp_dh_callback: 
+      session_id_context: 
+      session_get_cb: 
+      session_new_cb: 
+      session_remove_cb: 
+      servername_cb: 
+      npn_protocols: 
+      npn_select_cb: 
+    ssl_session: !ruby/object:OpenSSL::SSL::Session {}
+    enable_post_connection_check: true
+    sspi_enabled: false
+    ca_file: 
+    ca_path: 
+    cert: 
+    cert_store: 
+    ciphers: 
+    key: 
+    ssl_timeout: 
+    ssl_version: 
+    verify_callback: 
+    verify_depth: 
+    verify_mode: 0
+params:
+  :oauth_token: 159032449-j9MA4aYI62C8GzAxc1ATnD7KhukDcp1RWhQuwdVc
+  oauth_token: 159032449-j9MA4aYI62C8GzAxc1ATnD7KhukDcp1RWhQuwdVc
+  :oauth_token_secret: Hd5ZgHzn5UPUUZP3WOixDV2TfshgotGUBTGZC3UCM
+  oauth_token_secret: Hd5ZgHzn5UPUUZP3WOixDV2TfshgotGUBTGZC3UCM
+  :user_id: '159032449'
+  user_id: '159032449'
+  :screen_name: rickyzein
+  screen_name: rickyzein
