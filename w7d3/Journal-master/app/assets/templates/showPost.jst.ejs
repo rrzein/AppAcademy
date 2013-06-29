@@ -1,0 +1,6 @@
+<div id="errors">
+</div>
+<h2 class='editable' id='title'><%= post.escape('title')%></h2>
+<p class='editable' id='body'><%= post.escape('body') %></p>
+<a href="/#/posts/<%= post.escape('id') %>/edit" class="editLink">Edit</a>
+<a href="/#">Back</a>

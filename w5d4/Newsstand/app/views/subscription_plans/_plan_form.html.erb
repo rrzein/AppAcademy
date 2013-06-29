@@ -1,0 +1,33 @@
+<% action_url = (method == :post) ? newspaper_subscription_plans_url(newspaper) : subscription_plan_url(subscription_plan) %>
+
+<form action="<%= action_url %>" method="post">
+	<input type="hidden" name="_method" value="<%= method %>">
+	<input type="hidden" name="authenticity_token"
+		value="<%= form_authenticity_token %>">
+
+	<label for="subscription_plan_price">Price:</label>
+	<input type="text" 
+				 name="subscription_plan[price]" 
+				 id="subscription_plan_price"
+				 value="<%= plan.price %>">
+	<br>
+	<br>
+	<label for="subscription_plan_daily">Subscription Type:</label>
+	<br>
+	<br>
+	<input type="radio"
+				 name="subscription_plan[daily]"
+				 id="subscription_plan_daily_true"
+				 value="true">
+	<label for="subscription_plan_daily_true">Daily</label>
+	<br>
+	<input type="radio"
+				 name="subscription_plan[daily]"
+				 id="subscription_plan_daily_false"
+				 value="false">
+	<label for="subscription_plan_daily_false">Weekly</label>
+	<br>
+	<br>
+
+	<input type="submit" value="<%= submit_value %>">
+</form>

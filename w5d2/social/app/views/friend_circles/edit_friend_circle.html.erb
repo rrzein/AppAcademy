@@ -1,0 +1,8 @@
+<h1>Edit friend circle</h1>
+<br>
+<h2>For <%= @current_user.name %></h2>
+<br>
+
+<%= render :partial => "friend_circles_form", :locals => { :method => :put,
+																									:circle => @circle,
+																									:users => @users }%>

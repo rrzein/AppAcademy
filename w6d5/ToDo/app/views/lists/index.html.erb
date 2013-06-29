@@ -1,0 +1,44 @@
+<%= File.read("./app/views/lists/_list_items.html").html_safe %>
+<%= File.read("./app/views/items/_new_item.html").html_safe %>
+
+
+<h1><%= current_user.username %>'s To-Do's</h1>
+<h3>Task Lists</h3>
+<div class="newItems">
+Add New Item
+<br>
+</div>
+<div class="lists">
+<ul>
+<% @lists.each do |list| %>
+	<li class="list hidden"> 
+	<%= link_to list.title, "#" %>
+	</li>
+<% end %>
+</ul>
+<%= link_to "Hide all", "#", :class => "hideItems" %>
+</div>
+<br>
+<div class="newList">
+<small>New List
+<%= render :partial => "form", :locals => {:list => current_user.lists.new} %>
+</small>
+</div>
+<br>
+
+<script type="text/javascript">
+	LISTS = <%= @lists.to_json(:include => :items).html_safe %>
+
+	$(function() {
+			ToDo.allListsSelect();
+			$('.hidden').on('click', ToDo.show);
+			$('.displayed').on('click', ToDo.hide);
+			$('.hideItems').on('click', function(event) {
+				$('.Items').remove();
+				$('.list').attr('class', 'list hidden');
+			});
+			$('.listForm').on('ajax:success', ToDo.appendNewList);
+			$('.createItems').on('click', ToDo.addItems);
+			$('.oneMoreItem').on('click', ToDo.addField);
+		});
+</script>

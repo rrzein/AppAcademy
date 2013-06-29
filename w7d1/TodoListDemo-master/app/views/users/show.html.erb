@@ -1,0 +1,37 @@
+<h1><%= @user.username %></h1>
+
+<ul>
+  <% @user.received_secrets.each do |secret| %>
+    <li><%= secret.title %></li>
+  <% end %>
+</ul>
+
+<script type="application/json" id="users_json">
+  <%= User.all.to_json.html_safe %>
+</script>
+
+<%= File.read("./app/views/users/_users_list.html").html_safe %>
+
+<a href="#" id="great_link">Do something great</a>
+
+<div id="users_list">
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $("#great_link").on("click", function () {
+      // got my users
+      var json = $("#users_json").html();
+      console.log(json);
+      var users = JSON.parse(json);
+      
+      var templateCode = $("#users_list_template").html();
+      var templateFn = _.template(templateCode);
+      var renderedTemplateContent = templateFn({
+        users: users
+      });
+      
+      $("#users_list").append(renderedTemplateContent);
+    });
+  });
+</script>

@@ -1,0 +1,20 @@
+pre {
+	text-align: center;
+	width: 50px;
+	height: 80px;
+	float: left;
+	background-color: gray;
+}
+
+div:last-of-type {
+	clear: left;
+}
+
+ul {
+	list-style-type: none;
+	background-color: blue;
+}
+
+li {
+	vertical-align: bottom;
+}

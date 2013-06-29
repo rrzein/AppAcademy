@@ -1,0 +1,7 @@
+<h1>Edit Account<h1>
+<%= render :partial => "sign_up",
+	:locals => {
+		:user => @user,
+		:method => :put,
+		:submit_value => "Edit User"
+	} %>

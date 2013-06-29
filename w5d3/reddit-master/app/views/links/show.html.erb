@@ -1,0 +1,13 @@
+<p>
+  <%= link_to @link.url, @link.url %>
+<p>
+
+<h2>Comments</h2>
+<ul>
+  <% comments_by_parent = @link.comments_by_parent%>
+  <% comments_by_parent[nil].each do |top_level_comments| %>
+    <li>
+      <%= comment_partial(top_level_comments, comments_by_parent) %>
+    </li>
+  <% end %>
+</ul>

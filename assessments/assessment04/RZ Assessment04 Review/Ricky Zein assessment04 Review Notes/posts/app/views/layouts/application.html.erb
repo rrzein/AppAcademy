@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Posts</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+<!-- SHOULD HAVE INCLUDED HERE THE SIGN-IN LINK AND THE SIGN OUT BUTTON TO GET THE SPEC TO PASS -->
+
+<!-- CODE FOR INCLUDING THE SIGN IN AND SIGN OUT LINK IS BELOW.
+NOTE THE CONDITIONAL. GOES AFTER YIELD. -->
+
+<% if current_user %>
+	<%= button_to "Sign Out", session_url, :method => :delete %>
+<% else %>
+	<%= link_to "Sign In", new_session_url %>
+<% end %>
+
+</body>
+</html>

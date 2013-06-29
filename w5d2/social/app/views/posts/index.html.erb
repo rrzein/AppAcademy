@@ -1,0 +1,11 @@
+<h1>Posts You've Created</h1>
+<br>
+<ul>
+<% @user.posts.each do |post| %>
+<li>
+<%= link_to "#{post.body}", post_url(post) %>
+
+</li>
+<% end %>
+
+</ul>

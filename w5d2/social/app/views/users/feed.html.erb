@@ -1,0 +1,33 @@
+<h1>Feed</h1>
+<br>
+<ul>
+<% @user.social_circles.each do |circle| %>
+<br>
+Circle: <%= circle.name %>
+<br>
+Posts:
+<br>
+<ul>
+<% circle.postings.each do |posting| %>
+<li>
+	<%= link_to "#{posting.body}", post_url(posting) %> by <%= posting.user.name %>
+	Votes: <%= posting.up_votes.count %>
+	<% vote = UpVote.where(:user_id => @user.id, :post_id => posting.id).first %>
+	<% unless vote %>
+	<%= button_to "Vote", up_votes_url(:post_id => posting.id) %>
+	<% else %>
+	<%= button_to "Unvote", up_vote_url(vote), :method => :delete %>
+	<% end %><br>
+</li>
+<% end %>
+</ul>
+
+<% end %>
+</ul>
+<br>
+<%= link_to "Profile Page", user_url(@user) %>
+<br>
+<%= link_to "Posts You've Authored", posts_url %>
+<!-- create a posted posts array, go through each circle, post the posts (unless
+they were in posted_posts array) in the circle, add it to the posted
+posts so they don't get posted again through another circle.>

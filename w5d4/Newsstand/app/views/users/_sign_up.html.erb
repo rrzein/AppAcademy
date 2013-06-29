@@ -1,0 +1,29 @@
+<% action_url = (method == :post) ? users_url : user_url(user) %>
+
+<form action="<%= action_url %>" method="post">
+	<input type="hidden" name="_method" value="<%= method %>">
+	<input type="hidden" name="authenticity_token" 
+		value="<%= form_authenticity_token %>">
+	<label for="user_name">Name: </label>
+	<input type="text"
+				 id="user_name"
+				 name="user[name]"
+				 value="<%= user.name %>">
+
+	<h4>Subscriptions</h4>
+	<ul>
+	<% all_papers.each do |paper| %>
+	<li><%= "#{paper.title}" %><br>
+		<label for="user_plan_ids_<%= paper.id %>">Plan Type:</label>
+		<select name="user[plan_ids][]">
+		<% paper.plans.each do |plan| %>
+		<option value="<%= plan.id %>"><%= plan.type %> ($<%= plan.price%>)
+		</option>
+	<% end %></select></li><br>
+	<% end %>
+	<input type="hidden"
+				 name="user[plan_ids][]"
+				 value="">
+	</ul>
+	<input type="submit" value="<%= submit_value %>">
+</form>

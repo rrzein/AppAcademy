@@ -1,0 +1,25 @@
+Hi <%= @user.name %>
+<br>
+Username: <%= @user.username %>
+<br>
+<br>
+Friend Circles You've Created
+<br>
+<ul>
+<% @user.friend_circles.each do |circle| %>
+<li><%= link_to "#{circle.name}", friend_circle_url(circle) %><br>
+</li>
+<% end %>
+</ul>
+<br>
+<br>
+Friend Circles You Belong To
+<ul>
+<% @user.social_circles.each do |circle| %>
+<li><%= link_to "#{circle.name}", friend_circle_url(circle) %><br>
+</li>
+<% end %>
+</ul>
+<br>
+<%= link_to "Create New Post", new_post_url %><br>
+<%= link_to "Create New Friend Circle", new_friend_circle_url %>

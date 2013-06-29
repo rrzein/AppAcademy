@@ -1,0 +1,34 @@
+.square {
+	width: 100px;
+	line-height: 100px;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.row1 {
+
+	border-bottom: solid;
+}
+
+.row2 {
+	border-bottom: solid;
+}
+
+.col1 {
+	border-right: solid;
+}
+
+.col2 {
+	border-right: solid;
+}
+
+div {
+
+	background-color: blue;
+}
+
+.row {
+	height: 100px;
+	width: 320px;
+}

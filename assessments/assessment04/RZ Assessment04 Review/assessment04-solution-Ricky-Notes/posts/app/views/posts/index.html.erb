@@ -1,0 +1,9 @@
+<p>
+  hello_world
+</p>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li><%= link_to post.title, post_url(post) %></li>
+  <% end %>
+<ul>

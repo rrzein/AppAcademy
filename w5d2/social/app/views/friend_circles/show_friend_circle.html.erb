@@ -1,0 +1,15 @@
+<h1><%= @circle.name %></h1>
+<br>
+<h3>Creator is: <%= @circle.user.name %></h3>
+<br>
+
+<ul>
+	<% @circle.members.each do |member| %>
+	<li>
+		<%= link_to "#{member.name}", user_url(member) %>
+		<br>
+	</li>
+	<% end %>
+</ul>
+
+<%= link_to "Edit Friend Circle", edit_friend_circle_url(@circle) %>

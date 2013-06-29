@@ -1,0 +1,10 @@
+<h1><%= "#{@user.name}" %>'s page</h1>
+Subscriptions:
+<ul>
+<% @user.plans.each do |plan| %>
+<li><%= plan.newspaper.title %><br>
+	Plan type: <%= plan.type %><br>
+	Price: <%= plan.price %>
+</li>
+<% end %>
+</ul>

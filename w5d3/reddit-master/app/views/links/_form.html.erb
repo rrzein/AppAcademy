@@ -1,0 +1,38 @@
+<% form_title = @link.persisted? ? "Edit Link" : "Create Link" %>
+<% submit_method = @link.persisted? ? :put : :post %>
+<% submit_url = @link.persisted? ? link_url(@link) : links_url %>
+
+<h1><%= form_title %></h1>
+<form action="<%= submit_url %>" method="post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input
+    type="hidden"
+    name="_method"
+    value="<%= submit_method %>">
+  
+  <label for="link_url">URL</label>
+  <input
+    type="text"
+    name="link[url]"
+    id="link_url"
+    value="<%= @link.url %>">
+
+  <h2>Post to Subs</h2>
+  <% Sub.all.each do |sub| %>
+    <label for="link_sub_ids_<%= sub.id %>"><%= sub.name %></label>
+    <input
+      type="checkbox"
+      name="link[sub_ids][]"
+      value="<%= sub.id %>"
+      id="link_sub_ids_<%= sub.id %>"
+      <% if @link.sub_ids.include?(sub.id) %>
+        checked="checked"
+      <% end %>
+    />
+  <% end %>
+
+  <input type="submit">
+</form>

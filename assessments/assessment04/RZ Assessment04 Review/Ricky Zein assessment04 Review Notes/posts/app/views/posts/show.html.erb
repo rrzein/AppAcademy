@@ -1,0 +1,35 @@
+Author: <%= @current_user.username %>
+<!-- TO FIND THE USER. JUST DO @post.user.username -->
+<p><%= @post.title %></p>
+
+<!-- NED USED PRE TAGS. WHAT ARE PRE TAGS? -->
+<pre>
+<%= @post.body %>
+</pre>
+<!-- PRE TAGS DISPLAY THINGS IN A FIXED-WIDTH MANNER -->
+
+<%= link_to "Edit Post", edit_post_url(@post) %>
+
+
+<h3>Tags</h3>
+<ul>
+	<% @post.tags.each do |tag| %>
+	<li> <%= tag.name %><br>
+	Remove Tag by clicking the button below:<%= button_to "Remove Tag", tag_url(tag), :method => :delete %>
+	</li>
+	<% end %>
+</ul>
+
+<h3>Add Tag</h3>
+<form action="<%= tags_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="tag[post_id]" value="<%= @post.id %>">
+	<label for="tag_name">Tag Name</label>
+	<input type="text" name="tag[name]" id="tag_name">
+	<br>
+	<input type="submit" value="Add Tag">
+</form>
+
+<% user = User.find_by_session_token(session[:session_token]) %>
+<%= button_to "Sign Out", session_url(:user => {:user_id => user.id}),
+	:method => :delete %>

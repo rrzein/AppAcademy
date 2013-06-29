@@ -1,0 +1,21 @@
+<h1>Post show page</h1>
+<br>
+<%= @post.body %>
+<br>
+<ul>
+<% @post.links.each do |link| %>
+<li><%= link.name %></li>
+<% end %>
+</ul>
+<br>
+Audiences:
+<br>
+<ul>
+<% @post.audience_circles.each do |circle| %>
+<li>
+	<%= link_to "#{circle.name}", friend_circle_url(circle) %>
+</li>
+<% end %>
+</ul>
+<br>
+<%= link_to "Back to profile page", user_url(@post.user) %>

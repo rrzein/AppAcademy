@@ -1,0 +1,18 @@
+<h1>Posts</h1>
+<%= @current_user.username %>
+<ul>
+<% @current_user.posts.each do |post| %>
+<li><p><%= link_to "#{post.title}", post_url(post) %></p><br>
+<p><%= "#{post.body}" %></p>
+</li>
+<br>posts
+<% end %>
+</ul>
+
+<%= button_to "Create New Post", new_post_url %>
+
+<%= link_to "Sign In", new_session_url %>
+
+<% user = User.find_by_session_token(session[:session_token]) %>
+<%= button_to "Sign Out", session_url(:user => {:id => user.id}),
+	:method => :delete %>

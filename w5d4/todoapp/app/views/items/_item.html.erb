@@ -1,0 +1,43 @@
+<% action_url = (method == :post) ? items_url : item_url(item) %>
+
+<form action="<%= action_url %>" method="post">
+	<input type="hidden" name="_method" value="<%= method %>">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label for="item_title">Item Title: </label>
+	<input type="text" 
+				 name="item[title]" 
+				 id="item_title"
+				 value="<%= item.title %>">
+	<br>
+
+	<label for="item_text">Item Description: </label>
+	<input type="text" name="item[text]" id="item_text"
+				value="<%= item">
+	<br>
+
+	<label for="item_project_id">Item Project: </label>
+	<select name="item[project_id]">
+		<% Project.all.each do |project| %>
+		<option value="<%= project.id %>"><%= project.title %></option>
+		<% end %>
+	</select>
+	<br>
+
+	<label for="item_completed">Status: </label><br>
+	<input type="radio"
+				 name="item[completed]"
+				 id="item_completed_true"
+				 value="true">
+	<label for="item_completed_true">Complete</label>
+	<br>
+	<input type="radio"
+				 name="item[completed]"
+				 id="item_completed_false"
+				 value="false">
+	<label for="item_completed_false">Incomplete</label>
+	<br>
+	<br>
+
+	<input type="submit" value="<%= submit_value %>">
+</form>

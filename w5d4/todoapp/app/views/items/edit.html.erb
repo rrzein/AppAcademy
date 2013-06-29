@@ -1,0 +1,7 @@
+<h3>Edit item</h3>
+<%= render :partial => "item",
+	:locals => {
+		:item => @item,
+		:submit_value => "Edit item",
+		:method => :put
+	} %>

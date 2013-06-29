@@ -1,0 +1,10 @@
+<h1><%= @newspaper.title %></h1>
+<h3>Editor: <%= @newspaper.editor.name %></h3>
+<h4>Available Subscription Plans</h4>
+<ul>
+	<% @newspaper.plans.each do |plan| %>
+	<li><%= link_to "#{plan.type}", subscription_plan_url(plan) %><br>
+		Price: $<%= plan.price %><br>
+	</li>
+	<% end %>
+</ul>

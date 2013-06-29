@@ -1,0 +1,33 @@
+<% if method == :create %>
+  <% action, method, msg = [posts_url, "post", "Create New Post"] %>
+<% else %>
+  <% action, method, msg = [post_url(post), "put", "Update Post"] %>
+<% end %>
+
+<!-- METHOD CAN ALSO JUST "POST". DOESN'T HAVE TO BE ONLY PUT AND DELETE -->
+
+<h1>New Post</h1>
+<form action="<%= action %>" method="post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>"
+  >
+  <input
+    type="hidden"
+    name="_method"
+    value="<%= method %>">
+
+  <label for="post_title">Title</label>
+  <input
+    type="text"
+    name="post[title]"
+    id="post_title"
+    value="<%= post.title %>"
+  >
+
+  <label for="post_body">Body</label>
+  <textarea name="post[body]" id="post_body"><%= post.body %></textarea>
+
+  <input type="submit" value="<%= msg %>">
+</form>

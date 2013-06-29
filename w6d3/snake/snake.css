@@ -1,0 +1,27 @@
+#game {
+	margin: auto;
+	border: 5px solid;
+	border-color: black;
+}
+
+.row {
+	float: left;
+	clear: left;
+	height: 10px;
+	background-color: gray;
+}
+
+.square {
+	width: 10px;
+	height: 10px;
+	float: left;
+	background-color: white;
+}
+
+.snake-piece {
+	background-color: green;
+}
+
+.apple {
+	background-color: red;
+}

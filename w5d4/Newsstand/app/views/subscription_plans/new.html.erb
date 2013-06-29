@@ -1,0 +1,10 @@
+<h1>Create new subscription plan</h1>
+<h4>For <%= @newspaper.title %></h4>
+<%= render :partial => "plan_form",
+	:locals => {
+		:plan => @plan,
+		:newspaper => @newspaper,
+		:method => :post,
+		:subscription_plan => @subscription_plan,
+		:submit_value => "Create subscription plan"
+	} %>

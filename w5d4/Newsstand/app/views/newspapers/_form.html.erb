@@ -1,0 +1,50 @@
+<% action_url = (method == :post) ? newspapers_url : newspaper_url(newspaper) %>
+
+<form action="<%= action_url %>" method="post">
+<input type="hidden" name="_method" value="<%= method %>">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<label for="newspaper_title">Newspaper Title:</label>
+<input type="text" 
+			 name="newspaper[title]" 
+			 id="newspaper_title"
+			 value="<%= newspaper.title %>">
+<br>
+
+<label for="newspaper_editor">Newspaper Editor:</label>
+<input type="text"
+			 name="editor[name]"
+			 id="newspaper_editor">
+<br>
+<br>
+
+<% newspaper.plans.each_with_index do | plan, i | %>
+<% html_id = "newspaper_plans_attributes_#{i}_" %>
+<label for="<%= html_id %>_price">
+Price:
+</label>
+<input type="hidden"
+			 name="newspaper[plans_attributes[<%= i %>][id]"
+			 value="<%= plan.id %>">
+<input type="text"
+			 name="newspaper[plans_attributes][<%= i %>][price]"
+			 id="<%= html_id %>price"
+			 value="<%= plan.price %>">
+<br>
+<label for="<%= html_id %>daily">
+<input type="radio"
+			 name="newspaper[plans_attributes][<%= i %>][daily]"
+			 id="<%= html_id %>daily_true"
+			 value="true">
+<label for="<%= html_id %>daily_true">Daily</label>
+<br>
+<input type="radio"
+			 name="newspaper[plans_attributes][<%= i %>][daily]"
+			 id="<%= html_id %>daily_false"
+			 value="false">
+<label for="<%= html_id %>daily_false">Weekly</label>
+<br>
+<br>
+<% end %>
+<br>
+<input type="submit" value="<%= submit_value %>">
+</form>

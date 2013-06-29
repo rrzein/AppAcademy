@@ -1,0 +1,9 @@
+<h1>Subscription Plan Page</h1>
+<h4>For <%= @plan.newspaper.title %></h4>
+<br>
+Price: $<%= @plan.price %>
+<br>
+Subscription Type: <%= @plan.type %>
+<br>
+<br>
+<%= link_to "Back to newspaper", newspaper_url(@plan.newspaper) %>

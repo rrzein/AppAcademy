@@ -1,0 +1,5 @@
+<h3><%= @item.project.title %></h3>
+<h4><%= @item.title %></h4>
+<%= @item.text %><br>
+<%= @item.completed ? "Complete" : "Incomplete" %><br>
+<%= link_to "Back to project", project_url(@item.project) %>

@@ -1,0 +1,14 @@
+<div class="tag-form">
+	<form>
+		<input type="hidden" name="authenticity token" value="<%= PT.Token %>">
+		<input type="hidden" name="tag[x]" value="<%= position.left %>">
+		<input type="hidden" name="tag[y]" value="<%= position.top %>">
+	<select class="dropdown" name="tag[friend_id]">
+		<option value=""></option>
+		<% _(user.friends).each(function(friend) { %>
+			<option value="<%= friend.id %>"><%= friend.name %></option>
+		<% }); %>
+	</select>
+	<input type="submit" value="Tag Friend">
+</form>
+</div>

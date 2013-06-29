@@ -1,0 +1,12 @@
+<script type="text/template" class="listLists">
+	<select class="listSelect" name="item[list_id]">
+	<% _.each(LISTS, function(list, index) { %>
+	<option value="<%= index + 1 %>"><%= list.title %></option>
+	<% }) %>
+	</select>
+	<br>
+	<input type="text" id="item_name" name="item[name]">
+	<br>
+	<a href="#"><button type="button" class="oneMoreItem">+</button></a>
+	<a href="#"><button type="button" class="createItems">Add</button></a>
+</script>

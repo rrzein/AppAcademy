@@ -1,0 +1,7 @@
+<h1>Sign Up</h1>
+<%= render :partial => "sign_up",
+	:locals => {
+		:user => @user,
+		:method => :post,
+		:submit_value => "Sign Up"
+	} %>

@@ -1,0 +1,11 @@
+<script type="text/template" class="listItems">
+<% var items = list.items %>
+
+<div class="Items">
+<ul>
+<% _.each(list.items, function(item, index) { %>
+	<li><%= item.name %><a href="#"><button type="button" class="deleteItem">√</button></a></li>
+<% }); %>
+</ul>
+</div>
+</script>

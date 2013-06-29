@@ -1,0 +1,17 @@
+<!-- form for viewing a user's profile page -->
+<h1><%= @user.name %>'s profile page</h1>
+<br>
+<h2>Following</h2>
+<br>
+<ul>
+<% @user.followees.each do |followee| %>
+<li><%= followee.name %></li>
+<% end %>
+</ul>
+<h2>Followers</h2>
+<br>
+<ul>
+<% @user.followers.each do |follower| %>
+<li><%= follower.name %></li>
+<% end %>
+</ul>

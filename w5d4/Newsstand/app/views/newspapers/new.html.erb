@@ -1,0 +1,7 @@
+<h1>Create newspaper</h1>
+<%= render :partial => "form",
+	:locals => {
+		:newspaper => @newspapershow,
+		:method => :post,
+		:submit_value => "Create newspaper"
+	} %>

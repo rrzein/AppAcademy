@@ -1,0 +1,42 @@
+<% form_title = @sub.persisted? ? "Edit Sub" : "Create Sub" %>
+<% submit_method = @sub.persisted? ? :put : :post %>
+<% submit_url = @sub.persisted? ? sub_url(@sub) : subs_url %>
+
+<h1><%= form_title %></h1>
+<form action="<%= submit_url %>" method="post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input
+    type="hidden"
+    name="_method"
+    value="<%= submit_method %>">
+  
+  <label for="sub_name">Name</label>
+  <input
+    type="text"
+    name="sub[name]"
+    id="sub_name"
+    value="<%= @sub.name %>">
+
+  <% @sub.links.each_with_index do |link, i| %>
+    <h2>Create Link</h2>
+    <% link_id = "sub_links_attributes_#{i}" %>
+    <% link_name = "sub[links_attributes][#{i}]" %>
+    
+    <label for="<%= link_id + "_url" %>">URL</label>
+    <input
+      type="hidden"
+      name="<%= link_name %>[id]"
+      value="<%= link.id %>">
+
+    <input
+      type="text"
+      name="<%= link_name %>[url]"
+      id="<%= link_id + "_url" %>"
+      value="<%= link.url %>">
+  <% end %>
+
+  <input type="submit">
+</form>

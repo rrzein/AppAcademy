@@ -1,0 +1,9 @@
+<ul>
+	<% tasks.each(function (task) { %>
+		<li class="task">
+			<a href="#/tasks/<%= task.escape("id") %>">
+				<%= task.escape("title") %> 
+			</a>
+		</li>
+	<% }); %>
+</ul>

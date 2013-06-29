@@ -1,0 +1,20 @@
+<h1><%= user.name %></h1>
+
+<ul>
+	<% _(user.photos).each(function(photo) { %>
+    <li>
+      <a href="#" class="photo" data-id="<%= photo.id %>">
+				<img src="<%= photo.url %>"></img>
+			</a>
+		</li>
+	<% }); %>
+</ul>
+
+Add Photo
+
+<form>
+	<label for="photo_url">URL:</label>
+	<input type="text" name="photo[url]" id="photo_url">
+	<input type="hidden" name="authenticity_token" value="<%= PT.Token %>">
+	<input type="submit" value="Add Photo">
+</form>
