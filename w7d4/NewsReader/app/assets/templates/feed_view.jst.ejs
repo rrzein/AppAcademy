@@ -1,0 +1,10 @@
+<h3><%= feed.escape('title') %></h3>
+<ul>
+	<% entries.each(function (entry) { %>
+	<li> <a href=<%="#feeds/" + feed.id + "/entries/" + entry.id%>>
+		<%= entry.escape('title') %>
+	</a>
+	</li>
+	<% }) %>
+</ul>
+<button class="refresh">Refresh</button>
