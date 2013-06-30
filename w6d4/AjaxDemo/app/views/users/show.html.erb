@@ -1,0 +1,35 @@
+<h1><%= @user.username %></h1>
+
+<ul id="secrets">
+  <% @user.received_secrets.each do |secret| %>
+    <li><%= secret.title %>
+			<ul>
+				<% secret.tags.each do |tag| %>
+				<li>
+					<%= tag.name %>
+				</li>
+				<% end %>
+			</ul>
+		</li>
+  <% end %>
+</ul>
+<%= render :partial => "secrets/form", :locals => { :secret => @secret } %>
+
+<script type="text/javascript">
+	$(".SecretForm").on('ajax:success', function(){
+		var $secret = $('.SecretForm input[type="text"]');
+		var $tags = $('<ul>')
+		var $secretLi = $('<li>').text($secret.val());
+
+		$(this).find('.tagsselect :selected').each(function(index, el) {
+			var tagText = $(el).text();
+			var tagLi = $('<li>').text(tagText);
+			$tags.append(tagLi);
+		});
+		$secretLi.append($tags);
+
+		$('#secrets').append($secretLi);
+		$secret.val("");
+
+	});
+</script>

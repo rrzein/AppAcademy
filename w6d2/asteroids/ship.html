@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="578" height="500"></canvas>
+      <script>
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        var centerX = 330;
+        var centerY = 110;
+        var shipL = 50;
+        var shipH = 35;
+        var shipHatRad = 15;
+        context.beginPath();
+        context.arc(centerX, centerY - shipH * .5, shipHatRad, Math.PI, 0, false);
+        context.strokeStyle = '#DF7401';
+        context.lineWidth = shipHatRad;
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(centerX - shipL/2, centerY);
+        context.lineTo(centerX + shipL/2, centerY);
+        context.lineWidth = shipH;
+        context.strokeStyle = '#2E2EFE';
+        context.lineCap = 'round';
+        context.stroke();
+      </script>
+    </body>
+</html>

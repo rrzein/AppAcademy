@@ -1,0 +1,39 @@
+
+<ul>
+	<% @users.each do |user| %>
+	<li>
+		<%= user.username%>
+		<% if current_user.hero_ids.include?(user.id) %>
+		<div class="friend_buttons friended">
+
+		<% else %>
+		<div class="friend_buttons unfriended">
+
+		<% end %>
+		<%= button_to "unfriend", friendship_url(user), :form => {:class => "UnfriendButton"},
+									:remote => true, :method => :delete %>
+		<%= button_to "friend", friendship_url(user), :form => {:class => "FriendButton"},
+									:remote => true, :method => :post %>
+		</div>
+	</li>
+	<% end %>
+</ul>
+<script type="text/javascript">
+	$('.FriendButton').on('ajax:success', function() {
+		$('.friend_buttons').toggleClass('friended').toggleClass('unfriended');
+  });
+	$('.UnfriendButton').on('ajax:success', function() {
+		$('.friend_buttons').toggleClass('unfriended').toggleClass('friended');
+  });
+</script>
+
+<style>
+.friend_buttons.friended .FriendButton {
+	visibility: hidden;
+}
+
+.friend_buttons.unfriended .UnfriendButton {
+	visibility: hidden;
+}
+
+</style>
