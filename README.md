@@ -1,22 +1,22 @@
 # App Academy Work
 
-  This repo contains all of my learnings and projects completed during my time as a student at App Academy, save for my final two capstone projects.
+This repo contains all of my learnings and projects completed during my time as a student at App Academy, save for my final two capstone projects.
 
 ## Selected Works
 
-  Versa and inlike
-    Versa and inlike are my final two capstone projects for App Academy, both built on a Backbone.js/Ruby on Rails. You can find the repos for the two projects below:
-    * [Versa](http://github.com/rrzein/versa)
-    * [inlike](http://github.com/rrzein/inlike)
+#### Versa and inlike
+Versa and inlike are my final two capstone projects for App Academy, both built on a Backbone.js/Ruby on Rails. You can find the repos for the two projects below:
+  * [Versa](http://github.com/rrzein/versa)
+  * [inlike](http://github.com/rrzein/inlike)
 
-  Snake
-    Snake was my first foray into heavy object-oriented design in JavaScript and building browser-based games.
-    * [Snake](https://github.com/rrzein/appacademy/tree/master/w6d3/snake)
+#### Snake
+Snake was my first foray into heavy object-oriented design in JavaScript and building browser-based games.
+  * [Snake](https://github.com/rrzein/appacademy/tree/master/w6d3/snake)
 
-  ActiveRecord "Lite" and Rails "Lite"
+#### ActiveRecord "Lite" and Rails "Lite"
     During weeks 4 and 5 respectively, I built custom, "lite" versions of ActiveRecord and Rails to solidify my understanding of how ORM's and web frameworks function.
-    * ActiveRecord "Lite"
-    * Rails "Lite"
+  * ActiveRecord "Lite"
+  * Rails "Lite"
 
 ## Weekly Highlights and Learnings
 
