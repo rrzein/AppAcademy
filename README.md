@@ -15,8 +15,8 @@ Snake was my first foray into heavy object-oriented design in JavaScript and bui
 
 #### ActiveRecord "Lite" and Rails "Lite"
 During weeks 4 and 5 respectively, I built custom, "lite" versions of ActiveRecord and Rails to solidify my understanding of how ORM's and web frameworks function.
-  * ActiveRecord "Lite"
-  * Rails "Lite"
+  * [ActiveRecord "Lite"](https://github.com/rrzein/appacademy/tree/master/w3d5/active_record_lite-active-record-skeleton)
+  * [Rails "Lite"](https://github.com/rrzein/appacademy/tree/master/w4d5-w5d1/rails_lite)
 
 ## Weekly Highlights and Learnings
 
