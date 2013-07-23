@@ -1,1 +1,1 @@
-THIS README INTENTIONALLY LEFT BLANK
+A "lite" version of Rails' Active Record, built from scratch, to gain a deeper understanding of Active Record.
