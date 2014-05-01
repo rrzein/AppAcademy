@@ -1,6 +1,0 @@
-#Assessment Improvement Notes:
-#the "top of the deck" is the front of the array
-#don't have to explicitly return things when the method is actually performing an action
-#You can += two arrays instead of shoveling one array into the other, or trying to use an unnecessary "each do"
-#If we have getter and/or setter methods for something, we don't need to explicitly call the instance variable @... just call the getter/setter
-#Need a better grasp of when one class is "making something happen on another class" and when another class is "on the receiving end"
